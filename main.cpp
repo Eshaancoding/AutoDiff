@@ -18,4 +18,5 @@ int main(int argc, const char * argv[]) {
     cout<<x.array[1].value<<endl;
     cout<<x.array[2].value<<endl;
     cout<<x.array[3].value<<endl;
+    hello
 }

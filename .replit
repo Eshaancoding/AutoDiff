@@ -1,0 +1,2 @@
+language = "bash"
+run = "c++ -I AutoDiff/Headers/ AutoDiff/src/* main.cpp && ./a.out && rm a.out"
