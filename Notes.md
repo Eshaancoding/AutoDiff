@@ -55,11 +55,6 @@ This actually introduces to Jacobian matrixes
 ### Testing the WHOLE THING out using the Surrogate loss! 
 
 
-
-### NOTE:
-Check him out: https://alexknvl.com/
-
-
 ### EXEC:
 clear && c++ -I AutoDiff/Headers/ AutoDiff/src/* main.cpp && ./a.out && rm a.out
 
