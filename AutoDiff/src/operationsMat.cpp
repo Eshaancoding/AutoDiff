@@ -28,3 +28,68 @@ void Matrix::operator= (initializer_list<double> ar) {
         x++;
     }
 }
+
+Matrix operator+ (const Matrix a, const Matrix b) {
+    // check size of mat
+    if (a.width != b.width || a.height != b.height) {
+        throw invalid_argument("adding matrix invalid");
+    }   
+    // do operation
+    Matrix return_mat = Matrix(a.width, a.height); 
+    for (int x = 0; x < a.height; x++) {
+        for (int i = 0; i < a.width; i++) {
+            return_mat.array[x*a.height + i] = a.array[x*a.height + i] + b.array[x*a.height + i];
+        }
+    }
+    return return_mat;
+}
+
+Matrix operator- (const Matrix a, const Matrix b) {
+    // check size of mat
+    if (a.width != b.width || a.height != b.height) {
+        throw invalid_argument("subtracting matrix invalid");
+    }   
+    // do operation
+    Matrix return_mat = Matrix(a.width, a.height); 
+    for (int x = 0; x < a.height; x++) {
+        for (int i = 0; i < a.width; i++) {
+            return_mat.array[x*a.height + i] = a.array[x*a.height + i] - b.array[x*a.height + i];
+        }
+    }
+    return return_mat;
+}
+
+Matrix operator* (const Matrix a, const Matrix b) {
+    // check size of mat
+    if (a.width != b.width || a.height != b.height) {
+        throw invalid_argument("multiplying matrix invalid");
+    }   
+    // do operation
+    Matrix return_mat = Matrix(a.width, a.height); 
+    for (int x = 0; x < a.height; x++) {
+        for (int i = 0; i < a.width; i++) {
+            return_mat.array[x*a.height + i] = a.array[x*a.height + i] * b.array[x*a.height + i];
+        }
+    }
+    return return_mat;
+}
+
+Matrix operator/ (const Matrix a, const Matrix b) {
+    // check size of mat
+    if (a.width != b.width || a.height != b.height) {
+        throw invalid_argument("multiplying matrix invalid");
+    }   
+    // do operation
+    Matrix return_mat = Matrix(a.width, a.height); 
+    for (int x = 0; x < a.height; x++) {
+        for (int i = 0; i < a.width; i++) {
+            return_mat.array[x*a.height + i] = a.array[x*a.height + i] / b.array[x*a.height + i];
+        }
+    }
+    return return_mat;
+}
+
+template<class T>
+T Matrix::operator[] (int x) {
+    
+}

@@ -13,4 +13,11 @@ public:
     // src/operationsMat.cpp
     void operator= (initializer_list<Variable> ar);
     void operator= (initializer_list<double> ar); 
+    template<class T> 
+    T operator[] (int x);
 }; 
+
+Matrix operator+ (const Matrix a, const Matrix b);
+Matrix operator- (const Matrix a, const Matrix b);
+Matrix operator* (const Matrix a, const Matrix b);
+Matrix operator/ (const Matrix a, const Matrix b);

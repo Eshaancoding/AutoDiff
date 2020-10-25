@@ -9,11 +9,14 @@
 
 int main(int argc, const char * argv[]) {
     Matrix x(2,2);
+    x = {
+        2,3,
+        4,6
+    };
     Variable j;
     Variable y; 
     Variable z;
     Variable h;
-    x = {2,3,4,6};
     cout<<x.array[0].value<<endl;
     cout<<x.array[1].value<<endl;
     cout<<x.array[2].value<<endl;
