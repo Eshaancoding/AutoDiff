@@ -88,8 +88,3 @@ Matrix operator/ (const Matrix a, const Matrix b) {
     }
     return return_mat;
 }
-
-template<class T>
-T Matrix::operator[] (int x) {
-    
-}
