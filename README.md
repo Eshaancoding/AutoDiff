@@ -46,6 +46,16 @@ I need this to represent the policy of the neural network (for PPO). So I need t
 
 Suprisingly definition operator overloading was not that hard. Most of the grunt work was already done for me when I was writing the operators for equations
 
+Slight problem... 
+I need to operator overload [][], so I could get beautiful statements like this:
+```c
+Matrix y = ...
+Variable x = y[2][4];
+```
+But in order to do this, I need a vector class....
+It's not hard to implement, it's just time consuming.
+Oh well let's got on with it. Plus imma group the src into folders. 
+
 ### Testing the WHOLE THING out using the Surrogate loss! 
 
 

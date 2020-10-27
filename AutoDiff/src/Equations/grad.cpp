@@ -2,7 +2,7 @@
 //  AutoDiff
 //  Created by Eshaan Arnav on 9/23/20.
 
-#include "coreEquation.h"
+#include "Equation.h"
 
 void print_array (vector<double> array, string name = "") {
     if (name != "") {

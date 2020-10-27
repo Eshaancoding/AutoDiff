@@ -1,4 +1,4 @@
-#include "coreMatrix.h"
+#include "Matrix.h"
 
 Matrix::Matrix (const int height, const int width) {
     this->height = height;
