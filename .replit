@@ -1,2 +1,2 @@
 language = "bash"
-run = "c++ -I AutoDiff/Headers/ AutoDiff/src/* main.cpp && ./a.out && rm a.out"
+run = "c++ -std=c++11 -I AutoDiff/Headers/ AutoDiff/src/Variable/* AutoDiff/src/Vector/* main.cpp && ./a.out && rm a.out"

@@ -4,8 +4,8 @@
 //
 //  Created by Eshaan Arnav on 9/23/20.
 //
-#ifndef COREEQUATION_H
-#define COREEQUATION_H
+#ifndef VARIABLE_HPP
+#define VARIABLE_HPP
 
 #include <iostream>
 #include <vector>

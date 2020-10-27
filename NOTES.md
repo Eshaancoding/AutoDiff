@@ -52,14 +52,33 @@ I need to operator overload [][], so I could get beautiful statements like this:
 Matrix y = ...
 Variable x = y[2][4];
 ```
-But in order to do this, I need a vector class....
-It's not hard to implement, it's just time consuming.
-Oh well let's got on with it. Plus imma group the src into folders. 
+But in order to do this, I need a vector class, which is fine, but time consuming.
+
+## Vector
+
+TODO: 
+    - SEPERATE OPERATIONS.CPP into DEC.cpp and OPERATIONS.cpp.
+    - Finish defining operator. Should contain operators of:
+        - =
+        - add/subtract/multiply/divide
+        - (+,-,/,*) that have an parameter as a double
+        - more in future...
+    - Put eval and grad in seperate files, no matter how small they are, I focus on consistency across folders
+    - Finish eval and grad, make sure that you have handled vectors like this: [2x, 2y]; 
+
+## RETURN back to Matrix
+
+TODO: 
+    - Finish operator=
+    - finish operators (+,-,/,*) that have an parameter as a double
+    - Finish eval and grad
+    - THEN YOU ARE DONE!
+
 
 ### Testing the WHOLE THING out using the Surrogate loss! 
 
 
 ### EXEC:
-clear && c++ -I AutoDiff/Headers/ AutoDiff/src/* main.cpp && ./a.out && rm a.out
+c++ -std=c++11 -I AutoDiff/Headers/ AutoDiff/src/Matrix/* AutoDiff/src/Variable/* AutoDiff/src/Vector/* main.cpp && ./a.out && rm a.out
 
 Or you can take the compiled library in the lib folder and use it there :) 

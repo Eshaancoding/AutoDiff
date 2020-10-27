@@ -1,4 +1,4 @@
-#include "Equation.h"
+#include "Variable.hpp"
 
 Variable::Variable (bool t) {
     this->child[0] = nullptr;

@@ -2,7 +2,7 @@
 //  AutoDiff
 //  Created by Eshaan Arnav on 9/23/20.
 
-#include "Equation.h"
+#include "Variable.hpp"
 
 const double pi = 3.1415926;
 
