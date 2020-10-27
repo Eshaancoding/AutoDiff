@@ -57,7 +57,6 @@ But in order to do this, I need a vector class, which is fine, but time consumin
 ## Vector
 
 TODO: 
-    - SEPERATE OPERATIONS.CPP into DEC.cpp and OPERATIONS.cpp.
     - Finish defining operator. Should contain operators of:
         - =
         - add/subtract/multiply/divide

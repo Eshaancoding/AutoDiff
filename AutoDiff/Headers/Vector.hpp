@@ -4,20 +4,19 @@
 using namespace std;
 
 class Vector {
-private:
+public:
     Variable *array;
     int width;
-public:
-    // Init declared in operations.cpp
+    // Declared in Vec.cpp
     Vector (int width); 
-    void operator= (initializer_list<double> ar); 
-    void operator= (initializer_list<Variable> ar);
+    ~Vector ();
+    // eval / grad.cpp
     Vector eval (vector<double> input);
     Vector grad (vector<double> input);
+    // rest of the functions are declared in operations.cpp
+    void operator= (initializer_list<double> ar); 
+    void operator= (initializer_list<Variable> ar);
     Variable operator[] (int x);
-    ~Vector ();
-    int return_width () const;
-    Variable* return_array () const;
 };
 
 // OPERATIONS
