@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <assert.h>
-#include "coreEquation.h"
+#include "Equation.h"
 using namespace std;
 class Matrix {
 public:

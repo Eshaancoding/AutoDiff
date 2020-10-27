@@ -1,2 +1,4 @@
-#include "Headers/coreMatrix.h"
-#include "Headers/coreEquation.h"
+#pragma once
+#include "Headers/Matrix.h"
+#include "Headers/Equation.h"
+#include "Headers/Vector.h"
