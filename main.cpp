@@ -6,17 +6,13 @@
 //
 #include "AutoDiff/AutoDiff.h"
 
-int main(int argc, const char * argv[]) {
-    Matrix x(2,2);
+int main(int argc, const char * argv[]) {  
+    Variable h = Variable();
+    Variable s = Variable(); 
+    Variable a = Variable();
+    Matrix x(1,2);
     x = {
-        2,2,
-        4,6
+        h^s,h^a,
     };
-    Matrix y(2,2);
-    y = {
-        6,4,
-        7,2
-    };
-    Matrix z = x + y;
-    cout<<z.eval({}).array[0].value<<endl;
+    Matrix result = x.grad({2,3,4});
 }

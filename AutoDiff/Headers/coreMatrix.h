@@ -11,9 +11,10 @@ public:
     // src/operationsMat.cpp
     Matrix (const int height, const int width); 
     // src/operationsMat.cpp
-    void operator= (initializer_list<Variable> ar);
-    void operator= (initializer_list<double> ar); 
+    void operator= (initializer_list<initializer_list<Variable>> ar);
+    void operator= (initializer_list<initializer_list<double>> ar); 
     Matrix eval (vector<double> input);
+    Matrix grad (vector<double> input);
 }; 
 
 Matrix operator+ (const Matrix a, const Matrix b);

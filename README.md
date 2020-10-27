@@ -36,21 +36,15 @@ cout<<result.grad({0,5}) // this wasn't the
 cout<<result.grad({0,5}) // same as this :(
 ``` 
 
-- I had to make sure that I set the error to zero to the other argument.  
-the error would go the equation x^4, since that the min
-value. But the error is also suppose to go to y^3, but just as error 0. If I don't do this, it would cause random results. 
+- I had to make sure that I set the error to zero to the other argument. The error would go the equation x^4, since that the min value. But the error is also suppose to go to y^3, but just as error 0. If I don't do this, it would cause random results. 
 
 -  I also noticed the importance of memory leaks.
-Thankfully, I don't need to incoperate memory leaks into this project beacuse
-there are no "unused memory". Every memory I allocated with the new operation
-is important. However, when I work with future projects, then decreasing memory
-leaks will be important since it gives more room to the RAM. 
+Thankfully, I don't need to incoperate memory leaks into this project because there are no "unused memory". Every memory allocated with the new operation is important. However, when I work with future projects, then decreasing memory leaks will be important since it gives more room to the RAM. 
 
 ## Matrix 
-I need this to represent the policy of the neural network (for PPO) 
-So I need to add operations that adds, subtract, dot product, multiply, etc.
-And I also need to figure out how to calc the partial derivative of that :(
-This actually introduces to Jacobian matrixes 
+I need this to represent the policy of the neural network (for PPO). So I need to add operations that adds, subtract, dot product, multiply, etc. And I also need to figure out how to calc the partial derivative of that :( This actually introduces to Jacobian matrixes 
+
+Suprisingly definition operator overloading was not that hard. Most of the grunt work was already done for me when I was writing the operators for equations
 
 ### Testing the WHOLE THING out using the Surrogate loss! 
 

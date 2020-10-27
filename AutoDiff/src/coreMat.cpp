@@ -6,27 +6,18 @@ Matrix::Matrix (const int height, const int width) {
     this->array = new Variable[this->height * this->width];
 }
 
-void Matrix::operator= (initializer_list<Variable> ar) {
-    if (ar.size() != this->height * this->width) {
-        throw invalid_argument("initalizing array invalid");
+void Matrix::operator= (initializer_list<initializer_list<Variable>> ar) {
+    if (ar.size() != this->height) {
+        throw invalid_argument("initialzing is invalid: Expected height is " + to_string(this->height) + " , Recieved height is: " + to_string(ar.size()));
     }
-    copy(ar.begin(), ar.end(), this->array);
+    if (ar.begin()->size() != this->width) {
+        throw invalid_argument("initialzing is invalid: Expected width is " + to_string(this->width) + " , Recieved width is: " + to_string(ar[0].size()));
+    }
+    
 }
 
-void Matrix::operator= (initializer_list<double> ar) {
-    if (ar.size() != this->height * this->width) {
-        throw invalid_argument("initalizing array invalid");
-    }
-    int x = 0; 
-    for (auto i : ar) {
-        // turn double into variable
-        Variable new_var = Variable();
-        new_var.operation = argument;
-        new_var.value = i;
-        // append
-        this->array[x] = new_var; 
-        x++;
-    }
+void Matrix::operator= (initializer_list<initializer_list<double>> ar) {
+    
 }
 
 Matrix operator+ (const Matrix a, const Matrix b) {
