@@ -33,6 +33,8 @@ enum op {
 
 class Variable {
 public:
+    // helper func vec / mat (defined eval.cpp)
+    void find_unique_id (vector<int> *ID_ARRAY, vector<int> *input_map);
     // variables
     double value;
     op operation;

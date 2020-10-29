@@ -9,7 +9,6 @@ public:
     int width;
     // Declared in Vec.cpp
     Vector (int width); 
-    ~Vector ();
     // eval / grad.cpp
     Vector eval (vector<double> input);
     Vector grad (vector<double> input);

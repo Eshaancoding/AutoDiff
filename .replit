@@ -1,2 +1,0 @@
-language = "bash"
-run = "c++ -std=c++11 -I AutoDiff/Headers/ AutoDiff/src/Variable/* AutoDiff/src/Vector/* main.cpp && ./a.out && rm a.out"

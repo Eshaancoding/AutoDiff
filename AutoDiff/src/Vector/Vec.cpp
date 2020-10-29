@@ -5,6 +5,3 @@ Vector::Vector (int width) {
     this->width = width;
 }
 
-Vector::~Vector () {
-    delete this->array;       
-}

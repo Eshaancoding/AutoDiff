@@ -57,24 +57,23 @@ But in order to do this, I need a vector class, which is fine, but time consumin
 ## Vector
 
 TODO: 
-    - Finish defining operator. Should contain operators of:
-        - =
-        - add/subtract/multiply/divide
-        - (+,-,/,*) that have an parameter as a double
-        - more in future...
     - Put eval and grad in seperate files, no matter how small they are, I focus on consistency across folders
     - Finish eval and grad, make sure that you have handled vectors like this: [2x, 2y]; 
+    
+Sadly I had to find each and every id corresponding the input. Which was a bit of a hard task, but I got it done.
+Finally evaluating the vector is all working, thanks to my handy tool, the debugger.
+Ok the calculating the gradient was fine. Most of the struggle was already endured when I needed to implement the input
+But Im not sure how to make this faster... Here's my explanation
+// 2:       7, 5
+// total:   5, 6, 7
+// map:     0, 1, 2 
 
-## RETURN back to Matrix
+## Ok soooooo
+I was thinking of implementing Matrix, but it has been so long since I have uploaded, so I decided to leave out the Matrix. Plus, the Vector class is already sufficient enough to calculate the surrogate loss :)
 
-TODO: 
-    - Finish operator=
-    - finish operators (+,-,/,*) that have an parameter as a double
-    - Finish eval and grad
-    - THEN YOU ARE DONE!
+## TESTING
 
-
-### Testing the WHOLE THING out using the Surrogate loss! 
+Ok now testing the whole thing out. This is written in the test.cpp file
 
 
 ### EXEC:

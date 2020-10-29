@@ -77,3 +77,130 @@ Vector operator+ (const double &b, const Vector &a) {
     }
     return new_vec;
 }
+
+// *****************************************************************
+// *                         SUBTRACT                              *
+// *****************************************************************
+
+Vector operator- (const Vector &a, const Vector &b) {
+    // check size
+    if (a.width != b.width) {
+        throw invalid_argument("Adding vectors invalid");
+    }
+    // make copy
+    Vector new_a = copy_contents_vec(a);
+    Vector new_b = copy_contents_vec(b);
+    // do operations
+    Vector new_vec = Vector(a.width);
+    for (int i = 0; i < new_vec.width; i++) {
+        new_vec.array[i] = new_a[i] - new_b[i];
+    }
+    return new_vec;
+}
+
+Vector operator- (const Vector &a, const double &b) {
+    // make copy
+    Vector new_a = copy_contents_vec(a);
+    // do operations
+    Vector new_vec = Vector(a.width);
+    for (int i = 0; i < new_vec.width; i++) {
+        new_vec.array[i] = new_a[i] - b;
+    }
+    return new_vec;
+}
+
+Vector operator- (const double &b, const Vector &a) {
+    // make copy
+    Vector new_a = copy_contents_vec(a);
+    // do operations
+    Vector new_vec = Vector(a.width);
+    for (int i = 0; i < new_vec.width; i++) {
+        new_vec.array[i] = b - new_a[i];
+    }
+    return new_vec;
+}
+
+// *****************************************************************
+// *                         MULTIPLYING                           *
+// *****************************************************************
+
+
+Vector operator* (const Vector &a, const Vector &b) {
+    // check size
+    if (a.width != b.width) {
+        throw invalid_argument("Adding vectors invalid");
+    }
+    // make copy
+    Vector new_a = copy_contents_vec(a);
+    Vector new_b = copy_contents_vec(b);
+    // do operations
+    Vector new_vec = Vector(a.width);
+    for (int i = 0; i < new_vec.width; i++) {
+        new_vec.array[i] = new_a[i] * new_b[i];
+    }
+    return new_vec;
+}
+
+Vector operator* (const Vector &a, const double &b) {
+    // make copy
+    Vector new_a = copy_contents_vec(a);
+    // do operations
+    Vector new_vec = Vector(a.width);
+    for (int i = 0; i < new_vec.width; i++) {
+        new_vec.array[i] = new_a[i] * b;
+    }
+    return new_vec;
+}
+
+Vector operator* (const double &b, const Vector &a) {
+    // make copy
+    Vector new_a = copy_contents_vec(a);
+    // do operations
+    Vector new_vec = Vector(a.width);
+    for (int i = 0; i < new_vec.width; i++) {
+        new_vec.array[i] = b * new_a[i];
+    }
+    return new_vec;
+}
+
+// *****************************************************************
+// *                         DIVIDING                              *
+// *****************************************************************
+
+Vector operator/ (const Vector &a, const Vector &b) {
+    // check size
+    if (a.width != b.width) {
+        throw invalid_argument("Adding vectors invalid");
+    }
+    // make copy
+    Vector new_a = copy_contents_vec(a);
+    Vector new_b = copy_contents_vec(b);
+    // do operations
+    Vector new_vec = Vector(a.width);
+    for (int i = 0; i < new_vec.width; i++) {
+        new_vec.array[i] = new_a[i] / new_b[i];
+    }
+    return new_vec;
+}
+
+Vector operator/ (const Vector &a, const double &b) {
+    // make copy
+    Vector new_a = copy_contents_vec(a);
+    // do operations
+    Vector new_vec = Vector(a.width);
+    for (int i = 0; i < new_vec.width; i++) {
+        new_vec.array[i] = new_a[i] / b;
+    }
+    return new_vec;
+}
+
+Vector operator/ (const double &b, const Vector &a) {
+    // make copy
+    Vector new_a = copy_contents_vec(a);
+    // do operations
+    Vector new_vec = Vector(a.width);
+    for (int i = 0; i < new_vec.width; i++) {
+        new_vec.array[i] = b / new_a[i];
+    }
+    return new_vec;
+}
