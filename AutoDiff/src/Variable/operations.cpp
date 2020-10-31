@@ -246,7 +246,7 @@ Variable min_op (const Variable &a, const double b) {
     Variable new_var = Variable(false);
     new_var.operation = op::min; 
     new_var.child[0] = copy_contents_var(a);
-    new_var.child[0] = b_var;
+    new_var.child[1] = b_var;
     return new_var;
 }
 
@@ -348,7 +348,7 @@ Variable Variable::clip (double min, const Variable &max) {
     return new_var;
 }
 
-Variable Variable::clip (const Variable &min,  double max) {
+Variable Variable::clip (const Variable &min, double max) {
     Variable new_var = Variable(false);
     
     Variable *max_var = new Variable();

@@ -77,6 +77,6 @@ Ok now testing the whole thing out. This is written in the test.cpp file
 
 
 ### EXEC:
-c++ -std=c++11 -I AutoDiff/Headers/ AutoDiff/src/Matrix/* AutoDiff/src/Variable/* AutoDiff/src/Vector/* main.cpp && ./a.out && rm a.out
+c++ -std=c++11 -I AutoDiff/Headers/ AutoDiff/src/Variable/* AutoDiff/src/Vector/* main.cpp && ./a.out && rm a.out
 
 Or you can take the compiled library in the lib folder and use it there :) 

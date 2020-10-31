@@ -33,16 +33,17 @@ double Variable::eval (vector<double> input, bool is_top_node) {
         value_index.clear();
     }
     if (this->operation == op::clip) {
-        // check if max is less than min, or vise versa. (Gives out warning)
-        if (this->child[0]->value > this->child[1]->value) {
-            string red = "\033[4;34m";
-            string normal = "\033[0m"; 
-            cout<<red<<"Warning:"<<normal<<" min is more than max"<<endl; 
-        }
         // get values
         this->arg->eval(input, false);
         this->child[0]->eval(input, false);
         this->child[1]->eval(input, false);
+        // check if max is less than min, or vise versa. (Gives out warning)
+        if (this->child[0]->value >= this->child[1]->value) {
+            string red = "\033[4;34m";
+            string normal = "\033[0m"; 
+            cout<<red<<"Warning:"<<normal<<" min is more than / equal to max"<<endl; 
+        }
+        // do actual clip operations
         if (this->arg->value >= this->child[0]->value &&
             this->arg->value <= this->child[1]->value) {
             // in range
