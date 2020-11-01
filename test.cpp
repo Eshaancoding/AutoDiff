@@ -4,7 +4,7 @@
 // ===============================================================================
 // You could change the type of console output by changing the mode variable!
 // You could also change the mode in the middle of testing!
-// when mode is equal to 0, it will output all tests' results
+// when mode is equal to 0, it will output all tests' results (descriptiont included)
 // when mode is equal to 1, it will output only the failed tests
 // when model is equal to 2, it will throw an error if one of the test failed, will not print if the test has passed 
 // when model is equal to 3, show no output / error at all (for unwanted printing)
@@ -13,7 +13,7 @@
 // any mode that is above 3 will throw an error
 // ===============================================================================
 
-int mode = 4; 
+int mode = 0; 
 
 void TEST (bool val, string description) {
     if (mode > 4) {
@@ -104,33 +104,40 @@ int main () {
     // VARIABLE OPERATIONS GRAD
     // =======================================
 
-    TEST((x + 3).grad({2})[0] == 5, "grad: Adding variable and double");
-    TEST((3 + x).grad({2})[0] == 5, "grad: Adding double and variable"); 
-    TEST((x + y).grad({3,2})[0] == 5, "grad: Variable and Variable");
-
-    TEST((x - 3).grad({2})[0] == -1, "grad: Subtracting variable and double");
-    TEST((3 - x).grad({2})[0] == 1, "grad: Subtracting double and variable"); 
-    TEST((x - y).grad({3,2})[0] == 1, "grad: Subtracting Variable and Variable");
-
-    TEST((x * 3).grad({2})[0] == 6, "grad: Multiplying variable and double");
-    TEST((3 * x).grad({2})[0] == 6, "grad: Multiplying double and variable"); 
-    TEST((x * y).grad({3,2})[0] == 6, "grad: Multiplying Variable and Variable");
-
-    TEST((x / 3).grad({2})[0] == (double(2)/3), "grad: Dividing variable and double");
-    TEST((3 / x).grad({2})[0] == (double(3)/2), "grad: Dividing double and variable"); 
-    TEST((x / y).grad({3,2})[0] == (double(3)/2), "grad: Dividing Variable and Variable");
-
-    TEST((x ^ 3).grad({2})[0] == 8, "grad: Exponent variable and double");
-    TEST((3 ^ x).grad({2})[0] == 9, "grad: Exponent double and variable"); 
-    TEST((x ^ y).grad({3,2})[0] == 9, "grad: Exponent Variable and Variable");
+    TEST((x + 3).grad({2})[0] == 1, "grad: Adding variable and double");
+    TEST((3 + x).grad({2})[0] == 1, "grad: Adding double and variable"); 
+    TEST((x + y).grad({3,2})[0] == 1, "grad: Variable and Variable with respect to x");
+    TEST((x + y).grad({3,2})[1] == 1, "grad: Variable and Variable with respect to y");
     
-    TEST(min_op(x, y).grad({5,12})[0] == 5, "grad: Min operation Variable and Variable");
-    TEST(min_op(5, y).grad({12})[0] == 5, "grad: Min operation double and Variable");
-    TEST(min_op(x, 1).grad({5})[0] == 1, "grad: Min operation Variable and double"); 
+    TEST((x - 3).grad({2})[0] == 1, "grad: Subtracting variable and double");
+    TEST((3 - x).grad({2})[0] == -1, "grad: Subtracting double and variable"); 
+    TEST((x - y).grad({3,2})[0] == 1, "grad: Subtracting Variable and Variable with respect to x");
+    TEST((x - y).grad({3,2})[1] == -1, "grad: Subtracting Variable and Variable with respect to y");
 
-    TEST(max_op(x, y).grad({5,12})[0] == 12, "grad: Max operation Variable and Variable");
-    TEST(max_op(5, y).grad({12})[0] == 12, "grad: Max operation double and Variable");
-    TEST(max_op(x, 1).grad({5})[0] == 5, "grad: Max operation Variable and double"); 
+    TEST((x * 3).grad({2})[0] == 3, "grad: Multiplying variable and double");
+    TEST((3 * x).grad({2})[0] == 3, "grad: Multiplying double and variable"); 
+    TEST((x * y).grad({3,2})[0] == 2, "grad: Multiplying Variable and Variable with respect to x");
+    TEST((x * y).grad({3,2})[1] == 3, "grad: Multiplying Variable and Variable with respect to y");
+
+    TEST((x / 3).grad({2})[0] == (double(1)/3), "grad: Dividing variable and double");
+    TEST((3 / x).grad({2})[0] == (double(-3)/4), "grad: Dividing double and variable"); 
+    TEST((x / y).grad({3,2})[0] == (double(1)/2), "grad: Dividing Variable and Variable with respect to x");
+    TEST((x / y).grad({3,2})[1] == (double(-3)/4), "grad: Dividing Variable and Variable with respect to y");
+    
+    TEST((x ^ 3).grad({2})[0] == 12, "grad: Exponent variable and double");
+    TEST((3 ^ x).grad({2})[0] == 9 * log(3), "grad: Exponent double and variable"); 
+    TEST((x ^ y).grad({3,2})[0] == 6, "grad: Exponent Variable and Variable with respect to x");
+    TEST((x ^ y).grad({3,2})[1] == 9 * log(3), "grad: Exponent Variable and Variable with respect to y");
+
+    TEST(min_op(x, y).grad({5,12})[0] == 1, "grad: Min operation Variable and Variable with respect to x");
+    TEST(min_op(x, y).grad({5,12})[1] == 0, "grad: Min operation Variable and Variable with respect to y");
+    TEST(min_op(5, y).grad({12})[0] == 0, "grad: Min operation double and Variable");
+    TEST(min_op(x, 1).grad({5})[0] == 0, "grad: Min operation Variable and double"); 
+
+    TEST(max_op(x, y).grad({5,12})[0] == 0, "grad: Max operation Variable and Variable with respect to x");
+    TEST(max_op(x, y).grad({5,12})[0] == 0, "grad: Max operation Variable and Variable with respect to y");
+    TEST(max_op(5, x^2).grad({12})[0] == 24, "grad: Max operation double and Variable");
+    TEST(max_op(x^3, 1).grad({5})[0] == 75, "grad: Max operation Variable and double"); 
 
     TEST(x.clip(-1, 4).grad({-6})[0] == -1, "grad: clipping input (double & double). Input reaches lower bounds");
     TEST(x.clip(-1, 4).grad({7})[0] == 4, "grad: clipping input (double & double). Input reaches upper bounds");   
