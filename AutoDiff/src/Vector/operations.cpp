@@ -32,8 +32,8 @@ void Vector::operator= (initializer_list<Variable> ar) {
     }
 }
 
-Variable Vector::operator[] (int x) {
-    return this->array[x]; 
+double Vector::operator[] (int x) {
+    return this->array[x].value; 
 }
 
 // *****************************************************************

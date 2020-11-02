@@ -88,13 +88,13 @@ int main () {
     TEST(x.clip(-1, 4).eval({7}) == 4, "eval: clipping input (double & double). Input reaches upper bounds");   
     TEST(x.clip(-1, 4).eval({3}) == 3, "eval: clipping input (double & double). Input within bound");   
     
-    TEST(x.clip(y, 4).eval({-1, -6}) == -1, "eval: clipping input (variable & double). Input reaches lower bounds");
+    TEST(x.clip(y, 4).eval({-7, -6}) == -6, "eval: clipping input (variable & double). Input reaches lower bounds");
     TEST(x.clip(y, 4).eval({6, 1}) == 4, "eval: clipping input (variable & double) Input reaches upper bounds");   
-    TEST(x.clip(y, 4).eval({-1, 3}) == 3, "eval: clipping input (variable & double) Input within bound");   
+    TEST(x.clip(y, 4).eval({3, 1}) == 3, "eval: clipping input (variable & double) Input within bound");   
 
     TEST(x.clip(-4, y).eval({-7, -2}) == -4, "eval: clipping input (double & variable). Input reaches lower bounds");
-    TEST(x.clip(-4, y).eval({-1, 7}) == -1, "eval: clipping input (double & variable) Input reaches upper bounds");   
-    TEST(x.clip(-4, y).eval({-1, -2}) == -2, "eval: clipping input (double & variable) Input within bound");   
+    TEST(x.clip(-4, y).eval({8, 7}) == 7, "eval: clipping input (double & variable) Input reaches upper bounds");   
+    TEST(x.clip(-4, y).eval({-3, -2}) == -3, "eval: clipping input (double & variable) Input within bound");   
 
     TEST(x.clip(y,z).eval({-8, -5, -3}) == -5, "eval: clipping input (double & double). Input reaches lower bounds");    
     TEST(x.clip(y,z).eval({-5, -2, 3}) == -2, "eval: clipping input (double & double). Input reaches upper bounds");    
@@ -139,40 +139,45 @@ int main () {
     TEST(max_op(5, x^2).grad({12})[0] == 24, "grad: Max operation double and Variable");
     TEST(max_op(x^3, 1).grad({5})[0] == 75, "grad: Max operation Variable and double"); 
 
-    TEST(x.clip(-1, 4).grad({-6})[0] == -1, "grad: clipping input (double & double). Input reaches lower bounds");
-    TEST(x.clip(-1, 4).grad({7})[0] == 4, "grad: clipping input (double & double). Input reaches upper bounds");   
-    TEST(x.clip(-1, 4).grad({3})[0] == 3, "grad: clipping input (double & double). Input within bound");   
+    TEST(x.clip(-1, 4).grad({-6})[0] == 0, "grad: clipping input (double & double). Input reaches lower bounds");
+    TEST(x.clip(-1, 4).grad({7})[0] == 0, "grad: clipping input (double & double). Input reaches upper bounds");   
+    TEST(x.clip(-1, 4).grad({3})[0] == 1, "grad: clipping input (double & double). Input within bound");   
     
-    TEST(x.clip(y, 4).grad({-1, -6})[0] == -1, "grad: clipping input (variable & double). Input reaches lower bounds");
-    TEST(x.clip(y, 4).grad({6, 1})[0] == 4, "grad: clipping input (variable & double) Input reaches upper bounds");   
-    TEST(x.clip(y, 4).grad({-1, 3})[0] == 3, "grad: clipping input (variable & double) Input within bound");   
+    TEST(x.clip(y, 4).grad({-7, -6})[0] == 0, "eval: clipping input (variable & double). Input reaches lower bounds");
+    TEST(x.clip(y, 4).grad({6, 1})[0] == 0, "grad: clipping input (variable & double) Input reaches upper bounds");   
+    TEST(x.clip(y, 4).grad({3, 1})[0] == 1, "grad: clipping input (variable & double) Input within bound");   
 
-    TEST(x.clip(-4, y).grad({-7, -2})[0] == -4, "grad: clipping input (double & variable). Input reaches lower bounds");
-    TEST(x.clip(-4, y).grad({-1, 7})[0] == -1, "grad: clipping input (double & variable) Input reaches upper bounds");   
-    TEST(x.clip(-4, y).grad({-1, -2})[0] == -2, "grad: clipping input (double & variable) Input within bound");   
+    TEST(x.clip(-4, y).grad({-7, -2})[0] == 0, "grad: clipping input (double & variable). Input reaches lower bounds");
+    TEST(x.clip(-4, y).grad({8, 7})[0] == 0, "grad: clipping input (double & variable) Input reaches upper bounds");   
+    TEST(x.clip(-4, y).grad({-3, -2})[0] == 1, "grad: clipping input (double & variable) Input within bound");   
 
-    TEST(x.clip(y,z).grad({-8, -5, -3})[0] == -5, "grad: clipping input (double & double). Input reaches lower bounds");    
-    TEST(x.clip(y,z).grad({-5, -2, 3})[0] == -2, "grad: clipping input (double & double). Input reaches upper bounds");    
-    TEST(x.clip(y,z).grad({-4, -5, -2})[0] == -4, "grad: clipping input (double & double). Input within bounds");    
+    TEST(x.clip(y,z).grad({-8, -5, -3})[0] == 0, "grad: clipping input (double & double). Input reaches lower bounds");    
+    TEST(x.clip(y,z).grad({-5, -2, 3})[0] == 0, "grad: clipping input (double & double). Input reaches upper bounds");    
+    TEST(x.clip(y,z).grad({-4, -5, -2})[0] == 1, "grad: clipping input (double & double). Input within bounds");    
 
     // =======================================
-    // VECTOR OPERATIONS
+    // VECTOR OPERATIONS (eval / grad )
     // =======================================
 
     Vector a = Vector(2);
     Vector b = Vector(2); 
-    a = {x, y};
+    a = {x^y, y};
     b = {z, x};
-    Vector result = (a+b).eval({1,3,4});
-    double result_one = result.array[0].value;
-    double result_two = result.array[1].value;
-    TEST(result_one == 4 && result_two == 5, "eval: vector addition Vector & Vector");
+    Vector eval_result = (a+b).eval({1,3,4});
+    double eval_one = eval_result[0];
+    double eval_two = eval_result[1];
+    TEST(eval_one == 5 && eval_two == 4, "eval: vector addition Vector & Vector");
+    
     // =======================================
     // VECTOR & VARIABLE & MULTIPLE OPERATIONS
     // =======================================
 
+
+    // =======================================
+    // PRINTING ENDING
+    // =======================================
+    
     if (mode == 4) {
         cout<<endl; 
     }
-    
 }

@@ -64,19 +64,30 @@ Sadly I had to find each and every id corresponding the input. Which was a bit o
 Finally evaluating the vector is all working, thanks to my handy tool, the debugger.
 Ok the calculating the gradient was fine. Most of the struggle was already endured when I needed to implement the input
 But Im not sure how to make this faster... Here's my explanation
+
 // 2:       7, 5
 // total:   5, 6, 7
 // map:     0, 1, 2 
 
-## Ok soooooo
-I was thinking of implementing Matrix, but it has been so long since I have uploaded, so I decided to leave out the Matrix. Plus, the Vector class is already sufficient enough to calculate the surrogate loss :)
-
 ## TESTING
 
 Ok now testing the whole thing out. This is written in the test.cpp file
+I finished testing the variable class, however I haven't done the Vector.
+When testing out the vector, I have noticed that a derivative of a vector is a vector, therefore it's not accumulated... I have to do some more research on that...
+Yep I need to compute the matrix class. But later on I have to update the vector class so that it returns a Jocabian matrix!
 
+## Matrix
+Update the vector grad class for that matrix
+
+
+
+## TESTING the vector and matrix class in test.cpp
+time consuming, but worth it! 
+
+## Final touches...
+- Make more / correct comments if possible, CHECK EVERY FILE!
+- Compile it and make into a shared / static library!
 
 ### EXEC:
 c++ -std=c++11 -I AutoDiff/Headers/ AutoDiff/src/Variable/* AutoDiff/src/Vector/* main.cpp && ./a.out && rm a.out
-
 Or you can take the compiled library in the lib folder and use it there :) 

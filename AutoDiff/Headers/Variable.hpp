@@ -41,7 +41,7 @@ public:
     Variable* child[2];
     int id = -1; 
     Variable* arg;
-    // init (src/operationsEq.cpp)
+    // init (Var.cpp)
     Variable (bool t = true);
     // eval functions (src/evalEq.cpp)
     double eval (vector<double> input, bool is_top_node = true);

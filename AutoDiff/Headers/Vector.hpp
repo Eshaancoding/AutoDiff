@@ -1,3 +1,5 @@
+#ifndef VECTOR_HPP
+#define VECTOR_HPP
 #include "Variable.hpp"
 #include <iostream>
 #include <vector>
@@ -15,7 +17,7 @@ public:
     // rest of the functions are declared in operations.cpp
     void operator= (initializer_list<double> ar); 
     void operator= (initializer_list<Variable> ar);
-    Variable operator[] (int x);
+    double operator[] (int x);
 };
 
 // OPERATIONS
@@ -34,3 +36,4 @@ Vector operator* (const double &b, const Vector &a);
 Vector operator/ (const Vector &a, const Vector &b);
 Vector operator/ (const Vector &a, const double &b);
 Vector operator/ (const double &b, const Vector &a);
+#endif

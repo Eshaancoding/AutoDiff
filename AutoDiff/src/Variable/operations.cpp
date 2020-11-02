@@ -1,18 +1,5 @@
 #include "Variable.hpp"
 
-Variable::Variable (bool t) {
-    this->child[0] = nullptr;
-    this->child[1] = nullptr;
-    this->arg = nullptr;
-    this->operation = op::input; 
-    this->value = -1;
-    static int id_counter = 0;
-    if (t) {
-        id_counter++;
-        this->id = id_counter;
-    }
-}
-
 Variable* copy_contents_var (const Variable &l, bool a = false) {
     Variable *new_var = new Variable(a);
     new_var->child[0] = l.child[0];
