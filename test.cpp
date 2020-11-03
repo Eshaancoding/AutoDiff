@@ -164,8 +164,8 @@ int main () {
     a = {x^y, y};
     b = {z, x};
     Vector eval_result = (a+b).eval({1,3,4});
-    double eval_one = eval_result[0];
-    double eval_two = eval_result[1];
+    double eval_one = eval_result[0].value;
+    double eval_two = eval_result[1].value;
     TEST(eval_one == 5 && eval_two == 4, "eval: vector addition Vector & Vector");
     
     // =======================================

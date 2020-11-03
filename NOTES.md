@@ -79,8 +79,6 @@ Yep I need to compute the matrix class. But later on I have to update the vector
 ## Matrix
 Update the vector grad class for that matrix
 
-
-
 ## TESTING the vector and matrix class in test.cpp
 time consuming, but worth it! 
 

@@ -17,7 +17,7 @@ public:
     // rest of the functions are declared in operations.cpp
     void operator= (initializer_list<double> ar); 
     void operator= (initializer_list<Variable> ar);
-    double operator[] (int x);
+    Variable operator[] (int x);
 };
 
 // OPERATIONS
