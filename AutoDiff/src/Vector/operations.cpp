@@ -1,4 +1,5 @@
 #include "Vector.hpp"
+#include "Variable.hpp"
 
 // Helper func
 Vector copy_contents_vec (const Vector &l) {
@@ -14,6 +15,7 @@ Vector copy_contents_vec (const Vector &l) {
 
 
 void Vector::operator= (initializer_list<double> ar) {
+    if (this->width <= -1) throw invalid_argument("Vector not initialized ");
     if (ar.size() != this->width) {
         throw invalid_argument("Vector intialization invalid. Expected " + to_string(this->width) + " inputs not " + to_string(ar.size()));
     }
@@ -24,6 +26,7 @@ void Vector::operator= (initializer_list<double> ar) {
 }
 
 void Vector::operator= (initializer_list<Variable> ar) {
+    if (this->width <= -1) throw invalid_argument("Vector not initialized ");
     if (ar.size() != this->width) {
         throw invalid_argument("Vector intialization invalid. Expected " + to_string(this->width) + " inputs not " + to_string(ar.size()));
     }
@@ -32,7 +35,8 @@ void Vector::operator= (initializer_list<Variable> ar) {
     }
 }
 
-Variable Vector::operator[] (int x) {
+Variable& Vector::operator[] (int x) {
+    if (this->width <= -1) throw invalid_argument("Vector not initialized ");
     return this->array[x]; 
 }
 

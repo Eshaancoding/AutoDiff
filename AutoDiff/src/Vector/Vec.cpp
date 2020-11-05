@@ -5,3 +5,6 @@ Vector::Vector (int width) {
     this->width = width;
 }
 
+Vector::Vector () {
+    this->width = -1;
+}

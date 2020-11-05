@@ -1,25 +1,24 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
 
-#include <iostream> 
-#include "Variable.hpp"
-#include "Vector.hpp"
+#include <iostream>
+#include <vector>
 using namespace std;
 
 class Matrix {
 public: 
-    Variable *array;
+    Vector *array;
     int height;
     int width;
     // Declared in Mat.cpp
-    Matrix (int width, int height);
+    Matrix (int height, int width);
     // eval.cpp / grad.cpp
     Matrix eval (vector<double> input);
     Matrix grad (vector<double> input);
     // rest of the functions are declared in operations.cpp
     void operator= (initializer_list<initializer_list<double>> ar);
     void operator= (initializer_list<initializer_list<Variable>> ar);
-    Vector operator[] (int x);
+    Vector& operator[] (int x);
 }; 
 
 // OPERATIONS 

@@ -156,7 +156,7 @@ int main () {
     TEST(x.clip(y,z).grad({-4, -5, -2})[0] == 1, "grad: clipping input (double & double). Input within bounds");    
 
     // =======================================
-    // VECTOR OPERATIONS (eval / grad )
+    // VECTOR OPERATIONS (eval / grad)
     // =======================================
 
     Vector a = Vector(2);

@@ -1,6 +1,8 @@
 #include "Vector.hpp"
+#include "Variable.hpp"
 
 Vector Vector::eval (vector<double> input) {
+    if (this->width <= -1) throw invalid_argument("Vector not initialized ");
     vector<int> input_map;
     vector<int> IDs[this->width];
     for (int i = 0; i < this->width; i++) {

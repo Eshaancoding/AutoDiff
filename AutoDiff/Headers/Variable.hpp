@@ -50,6 +50,7 @@ public:
     vector<double> grad (vector<double> input, op last_operation = op::nan_op, double ERROR_NODE = 1, bool top_node = true, double other_value = std::nan("-1"), bool left=true);
     double dir_eval (double x, op operation, double y = std::nan("-1"), bool respect_x = true); 
     // operations (src/operationsEq.cpp)
+    void operator= (double num);
     Variable cos_radians ();
     Variable sin_radians (); 
     Variable cos_degrees ();
