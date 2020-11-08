@@ -1,6 +1,5 @@
 # TODO
 
-    - update the vector grad function. This returns a Matrix
     - Complete the matrix
     - make vector / matrix dependant on the *value* node instead of manually trying to figure out each of the values. This is actually a major flaw and will make the program faster!
     - Test vector and matrix class in test.cpp

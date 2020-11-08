@@ -39,7 +39,7 @@ double Variable::dir_eval (double x, op operation, double y, bool respect_x) {
     } else {
         if (operation == op::subtract) return -1;
         if (operation == op::divide) return (-y) / pow(x,2);
-        if (operation == op::exponent) return pow(y,x)*log(y);
+        if (operation == op::exponent) return pow(y,x)*log10(y);
     }
     cout<<"ERROR OPERATION: "<<operation<<endl; 
     throw invalid_argument("operation not valid when running dir_eval()");

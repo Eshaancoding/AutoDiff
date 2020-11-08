@@ -1,5 +1,6 @@
 #include "Matrix.hpp"
 #include "Vector.hpp"
+#include "Variable.hpp"
 
 // ============================================================
 //                      Helper functions!
@@ -11,8 +12,9 @@ Matrix copy_contents_mat (const Matrix &l) {
 }
 
 // ============================================================
-//                         ASSIGN
+//                       ASSIGN/ACCESS
 // ============================================================
+
 Vector& Matrix::operator[] (int x) {
     return this->array[x];
 }
@@ -54,4 +56,220 @@ void Matrix::operator= (initializer_list<initializer_list<Variable>> ar) {
 }
 
 
+// ============================================================
+//                         ADDITION
+// ============================================================
 
+Matrix operator+ (const Matrix &a, const Matrix &b) {
+    // see if width / height is feasible
+    if (a.width != b.width) throw invalid_argument("Width invalid");
+    if (a.height != b.height) throw invalid_argument("Height invalid");
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            return_mat.array[i].array[x] = a.array[i].array[x] + b.array[i].array[x];
+        }
+    }
+    // return
+    return return_mat;
+}
+
+Matrix operator+ (const Matrix &a, const double &b) {
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            Variable *new_var = new Variable();
+            new_var->operation = op::argument;
+            new_var->value = b;
+            return_mat.array[i].array[x] = a.array[i].array[x] + new_var;
+        }
+    }
+    // return
+    return return_mat;
+}
+
+
+Matrix operator+ (const double &b, const Matrix &a) {
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            Variable *new_var = new Variable();
+            new_var->operation = op::argument;
+            new_var->value = b;
+            return_mat.array[i].array[x] = new_var + a.array[i].array[x];
+        }
+    }
+    // return
+    return return_mat;
+}
+
+
+// ============================================================
+//                       SUBTRACTION
+// ============================================================
+
+Matrix operator- (const Matrix &a, const Matrix &b) {
+    // see if width / height is feasible
+    if (a.width != b.width) throw invalid_argument("Width invalid");
+    if (a.height != b.height) throw invalid_argument("Height invalid");
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            return_mat.array[i].array[x] = a.array[i].array[x] - b.array[i].array[x];
+        }
+    }
+    // return
+    return return_mat;
+}
+
+
+Matrix operator- (const Matrix &a, const double &b) {
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            Variable *new_var = new Variable();
+            new_var->operation = op::argument;
+            new_var->value = b;
+            return_mat.array[i].array[x] = a.array[i].array[x] - new_var;
+        }
+    }
+    // return
+    return return_mat;
+}
+
+
+Matrix operator- (const double &b, const Matrix &a) {
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            Variable *new_var = new Variable();
+            new_var->operation = op::argument;
+            new_var->value = b;
+            return_mat.array[i].array[x] = new_var - a.array[i].array[x];
+        }
+    }
+    // return
+    return return_mat;
+}
+
+
+// ============================================================
+//                       MULTIPLICATION
+// ============================================================
+
+Matrix operator* (const Matrix &a, const Matrix &b) {
+    // see if width / height is feasible
+    if (a.width != b.width) throw invalid_argument("Width invalid");
+    if (a.height != b.height) throw invalid_argument("Height invalid");
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            return_mat.array[i].array[x] = a.array[i].array[x] * b.array[i].array[x];
+        }
+    }
+    // return
+    return return_mat;
+}
+
+
+Matrix operator* (const Matrix &a, const double &b) {
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            Variable *new_var = new Variable();
+            new_var->operation = op::argument;
+            new_var->value = b;
+            return_mat.array[i].array[x] = a.array[i].array[x] * new_var;
+        }
+    }
+    // return
+    return return_mat;
+}
+
+
+Matrix operator* (const double &b, const Matrix &a) {
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            Variable *new_var = new Variable();
+            new_var->operation = op::argument;
+            new_var->value = b;
+            return_mat.array[i].array[x] = new_var * a.array[i].array[x];
+        }
+    }
+    // return
+    return return_mat;
+}
+
+
+// ============================================================
+//                       DIVISION
+// ============================================================
+
+Matrix operator/ (const Matrix &a, const Matrix &b) {
+    // see if width / height is feasible
+    if (a.width != b.width) throw invalid_argument("Width invalid");
+    if (a.height != b.height) throw invalid_argument("Height invalid");
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            return_mat.array[i].array[x] = a.array[i].array[x] / b.array[i].array[x];
+        }
+    }
+    // return
+    return return_mat;
+}
+
+
+Matrix operator/ (const Matrix &a, const double &b) {
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            Variable *new_var = new Variable();
+            new_var->operation = op::argument;
+            new_var->value = b;
+            return_mat.array[i].array[x] = a.array[i].array[x] / new_var;
+        }
+    }
+    // return
+    return return_mat;
+}
+
+
+Matrix operator/ (const double &b, const Matrix &a) {
+    // create matrix 
+    Matrix return_mat = Matrix(a.height, a.width);
+    // operations
+    for (int i = 0; i < a.height; i++) {
+        for (int x = 0; x < a.width; x++) {
+            Variable *new_var = new Variable();
+            new_var->operation = op::argument;
+            new_var->value = b;
+            return_mat.array[i].array[x] = new_var / a.array[i].array[x];
+        }
+    }
+    // return
+    return return_mat;
+}

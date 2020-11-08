@@ -9,9 +9,9 @@
 using namespace std;
 
 int main () {
-    Variable x = Variable();
-    Variable y = Variable();
-    Variable z = Variable();
+    Variable x = Variable(); // id: 1
+    Variable y = Variable(); // id: 2
+    Variable z = Variable(); // id: 3
     Vector a = Vector(2);
     Vector b = Vector(2);
     // assign vector
@@ -19,9 +19,6 @@ int main () {
     b = {z + x, y};
     Matrix result = (a + b).grad({3,1,2});
     result.print();
-    // test
-    Variable res = x^y + z + x;
-    cout<<res.grad({3,1,2})[1]<<endl; 
 }
 
 // x = 3
@@ -29,3 +26,4 @@ int main () {
 // z = 2
 // x^y + z + x
 // df_1 / dx = 2
+// 3 ^ 1 * log(3)

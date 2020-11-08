@@ -130,9 +130,9 @@ int main (int argc, char** argv) {
     TEST((x / y).grad({3,2})[1] == (double(-3)/4), "grad: Dividing Variable and Variable with respect to y");
     
     TEST((x ^ 3).grad({2})[0] == 12, "grad: Exponent variable and double");
-    TEST((3 ^ x).grad({2})[0] == 9 * log(3), "grad: Exponent double and variable"); 
+    TEST((3 ^ x).grad({2})[0] == 9 * log10(3), "grad: Exponent double and variable"); 
     TEST((x ^ y).grad({3,2})[0] == 6, "grad: Exponent Variable and Variable with respect to x");
-    TEST((x ^ y).grad({3,2})[1] == 9 * log(3), "grad: Exponent Variable and Variable with respect to y");
+    TEST((x ^ y).grad({3,2})[1] == 9 * log10(3), "grad: Exponent Variable and Variable with respect to y");
 
     TEST(min_op(x, y).grad({5,12})[0] == 1, "grad: Min operation Variable and Variable with respect to x");
     TEST(min_op(x, y).grad({5,12})[1] == 0, "grad: Min operation Variable and Variable with respect to y");
