@@ -5,6 +5,9 @@
 #include <vector>
 using namespace std;
 
+class Vector;
+class Variable;
+
 class Matrix {
 public: 
     Vector *array;
@@ -12,6 +15,7 @@ public:
     int width;
     // Declared in Mat.cpp
     Matrix (int height, int width);
+    void print ();
     // eval.cpp / grad.cpp
     Matrix eval (vector<double> input);
     Matrix grad (vector<double> input);

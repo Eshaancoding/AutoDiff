@@ -1,4 +1,4 @@
-#include "AutoDiff/AutoDiff.hpp"
+#include "AutoDiff.hpp"
 #include <string>
 
 // ===============================================================================
@@ -17,7 +17,7 @@ int mode = 0;
 
 void TEST (bool val, string description) {
     if (mode > 4) {
-        throw invalid_argument("invalid mode");
+        throw invalid_argument("invalid mode. Got: " + to_string(mode));
     }
     string red = "\033[1;31m";
     string green = "\033[1;32m";
@@ -45,10 +45,15 @@ void TEST (bool val, string description) {
     }
 }
 
-int main () {
+int main (int argc, char** argv) {
+    system("clear");
+    // set mode
+    if (argc == 2) {
+        mode = int (argv[1][0]) - 48;
+    }
+
     // to run: 
     // c++ -std=c++11 -I AutoDiff/Headers/ AutoDiff/src/Variable/* AutoDiff/src/Vector/* test.cpp && ./a.out && rm a.out
-    system("clear");
     Variable x;
     Variable y;
     Variable z; 
