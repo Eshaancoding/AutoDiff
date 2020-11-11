@@ -61,33 +61,60 @@ public:
     Variable clip (const Variable &min, double max);  
 };
 
-// operations (src/operationsEq.cpp)
+// operations (src/Variable)
 Variable operator+ (const Variable &left, const Variable &right);
 Variable operator+ (const Variable &b, const double &a);
 Variable operator+ (const double &a, const Variable &b);
+Variable operator+ (Variable &left, Variable &right);
+Variable operator+ (Variable &b, double &a);
+Variable operator+ (double &a, Variable &b);
+
 
 Variable operator- (const Variable &left, const Variable &right);
 Variable operator- (const Variable &b, const double &a);
 Variable operator- (const double &a, const Variable &b);
+Variable operator- (Variable &left, Variable &right);
+Variable operator- (Variable &b, double &a);
+Variable operator- (double &a, Variable &b);
+
 
 Variable operator* (const Variable &left, const Variable &right);
 Variable operator* (const Variable &b, const double &a);
 Variable operator* (const double &a, const Variable &b);
+Variable operator* (Variable &left, Variable &right);
+Variable operator* (Variable &b, double &a);
+Variable operator* (double &a, Variable &b);
+
 
 Variable operator/ (const Variable &left, const Variable &right);
 Variable operator/ (const Variable &b, const double &a);
 Variable operator/ (const double &a, const Variable &b);
+Variable operator/ (Variable &left, Variable &right);
+Variable operator/ (Variable &b, double &a);
+Variable operator/ (double &a, Variable &b);
+
 
 Variable operator^ (const Variable &left, const Variable &right);
 Variable operator^ (const Variable &b, const double &a);
 Variable operator^ (const double &a, const Variable &b);
+Variable operator^ (Variable &left, Variable &right);
+Variable operator^ (Variable &b, double &a);
+Variable operator^ (double &a, Variable &b);
+
 
 Variable min_op (const Variable &left, const Variable &right);
 Variable min_op (const Variable &a, const double b);
-Variable min_op (const double b, const Variable &a);
+Variable min_op (const double b, Variable &a);
+Variable min_op (Variable &left, Variable &right);
+Variable min_op (Variable &a, double b);
+Variable min_op (double b, Variable &a);
 
 Variable max_op (const Variable &left, const Variable &right);
 Variable max_op (const Variable &a, const double b);
 Variable max_op (const double b, const Variable &a);
+Variable max_op (Variable &left, Variable &right);
+Variable max_op (Variable &a, double b);
+Variable max_op (double b, Variable &a);
+
 
 #endif 

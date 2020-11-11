@@ -1,7 +1,9 @@
 # TODO
 
-    - Complete the matrix
+
     - make vector / matrix dependant on the *value* node instead of manually trying to figure out each of the values. This is actually a major flaw and will make the program faster!
+        - complete normal operations
+        - Init declare for clip and finish that
     - Test vector and matrix class in test.cpp
     - run test.cpp, check if everything is working
     - Check every comment in every file; make sure if it is correct
