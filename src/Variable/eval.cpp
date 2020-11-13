@@ -23,7 +23,7 @@ double Variable::exec_op(double num_one, op operation, double num_two) {
     else {throw invalid_argument("exec op error");}
 }
 
-double Variable::eval (vector<double> input, bool is_top_node) {
+double Variable::eval (bool is_top_node) {
     static int INPUT_ITERATION = 0;
     static vector<int> value_index;
     static vector<int> id_array;
@@ -34,9 +34,9 @@ double Variable::eval (vector<double> input, bool is_top_node) {
     }
     if (this->operation == op::clip) {
         // get values
-        this->arg->eval(input, false);
-        this->child[0]->eval(input, false);
-        this->child[1]->eval(input, false);
+        this->arg->eval(false);
+        this->child[0]->eval(false);
+        this->child[1]->eval(false);
         // check if max is less than min, or vise versa. (Gives out warning)
         if (this->child[0]->value >= this->child[1]->value) {
             string red = "\033[4;34m";
@@ -60,32 +60,17 @@ double Variable::eval (vector<double> input, bool is_top_node) {
     else if (this->child[0] != NULL) {
         // this is called binary tree traversal
         // execute left child
-        double input_one = this->child[0]->eval(input, false);
+        double input_one = this->child[0]->eval(false);
         // execute right child (may not work becuase of 1 input function)
         double input_two = 0;
-        if (this->child[1] != NULL) input_two = this->child[1]->eval(input, false);
+        if (this->child[1] != NULL) input_two = this->child[1]->eval(false);
         this->value = this->exec_op(input_one, this->operation, input_two);
         // could throw weird numbers (for ex: 3.344105426e74)
-        if (is_top_node && INPUT_ITERATION != input.size()) throw invalid_argument("input size invalid. Expected " + to_string(INPUT_ITERATION) + " input(s)");
         return this->value;
     }
     else {
         // input
-        if (this->operation == op::input) {
-            for (int i = 0; i < id_array.size(); i++) {
-                if (id_array[i] == this->id) {
-                    this->value = input[value_index[i]]; 
-                    return this->value;
-                }
-            }
-            value_index.push_back(INPUT_ITERATION);
-            id_array.push_back(this->id);
-            this->value = input[INPUT_ITERATION];
-            INPUT_ITERATION++;
-            return this->value;
-        }
-        // argument
-        else if (this->operation == op::argument) return this->value;
+        if (this->operation == op::argument || this->operation == op::input) return this->value;
         else {throw invalid_argument("No children return error");}
     }
 }

@@ -53,7 +53,7 @@ vector<double> Variable::grad (vector<double> input, op last_operation, double E
     double error = ERROR_NODE;
 
     if (top_node) {
-        this->eval(input); // get values
+        this->eval(); // get values
         GRAD_OUTPUT.clear();
         ID_ARRAY.clear();
         input_index.clear();

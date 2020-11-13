@@ -42,9 +42,9 @@ public:
     int id = -1; 
     Variable* arg;
     // init (Var.cpp)
-    Variable (bool t = true);
+    Variable (double value = 0, bool t = true);
     // eval functions (src/evalEq.cpp)
-    double eval (vector<double> input, bool is_top_node = true);
+    double eval (bool is_top_node = true);
     double exec_op (double num_one, op operation, double num_two);
     // dir eval (src/gradEq.cpp)
     vector<double> grad (vector<double> input, op last_operation = op::nan_op, double ERROR_NODE = 1, bool top_node = true, double other_value = std::nan("-1"), bool left=true);
@@ -55,66 +55,82 @@ public:
     Variable sin_radians (); 
     Variable cos_degrees ();
     Variable sin_degrees ();
-    Variable clip (double min, double max);
-    Variable clip (const Variable &min, const Variable &max);
-    Variable clip (double min, const Variable &max); 
-    Variable clip (const Variable &min, double max);  
+
+    Variable clip (const Variable &left, const Variable &right);
+    Variable clip (const Variable &left, Variable &right);
+    Variable clip (const Variable &left, const double &right);
+    Variable clip (Variable &left, const Variable &right);
+    Variable clip (Variable &left, Variable &right);
+    Variable clip (Variable &left, const double &right);
+    Variable clip (const double &left, const Variable &right);
+    Variable clip (const double &left, Variable &right);  
 };
+
+// NOTE: I have TRIED templates, however they keep bringing up errors (one time the function was not even called!). I decided to resort to the old-school method.
 
 // operations (src/Variable)
 Variable operator+ (const Variable &left, const Variable &right);
-Variable operator+ (const Variable &b, const double &a);
-Variable operator+ (const double &a, const Variable &b);
+Variable operator+ (const Variable &left, Variable &right);
+Variable operator+ (const Variable &left, const double &right);
+Variable operator+ (Variable &left, const Variable &right);
 Variable operator+ (Variable &left, Variable &right);
-Variable operator+ (Variable &b, double &a);
-Variable operator+ (double &a, Variable &b);
-
+Variable operator+ (Variable &left, const double &right);
+Variable operator+ (const double &left, const Variable &right);
+Variable operator+ (const double &left, Variable &right);
 
 Variable operator- (const Variable &left, const Variable &right);
-Variable operator- (const Variable &b, const double &a);
-Variable operator- (const double &a, const Variable &b);
+Variable operator- (const Variable &left, Variable &right);
+Variable operator- (const Variable &left, const double &right);
+Variable operator- (Variable &left, const Variable &right);
 Variable operator- (Variable &left, Variable &right);
-Variable operator- (Variable &b, double &a);
-Variable operator- (double &a, Variable &b);
-
+Variable operator- (Variable &left, const double &right);
+Variable operator- (const double &left, const Variable &right);
+Variable operator- (const double &left, Variable &right);
 
 Variable operator* (const Variable &left, const Variable &right);
-Variable operator* (const Variable &b, const double &a);
-Variable operator* (const double &a, const Variable &b);
+Variable operator* (const Variable &left, Variable &right);
+Variable operator* (const Variable &left, const double &right);
+Variable operator* (Variable &left, const Variable &right);
 Variable operator* (Variable &left, Variable &right);
-Variable operator* (Variable &b, double &a);
-Variable operator* (double &a, Variable &b);
-
+Variable operator* (Variable &left, const double &right);
+Variable operator* (const double &left, const Variable &right);
+Variable operator* (const double &left, Variable &right);
 
 Variable operator/ (const Variable &left, const Variable &right);
-Variable operator/ (const Variable &b, const double &a);
-Variable operator/ (const double &a, const Variable &b);
+Variable operator/ (const Variable &left, Variable &right);
+Variable operator/ (const Variable &left, const double &right);
+Variable operator/ (Variable &left, const Variable &right);
 Variable operator/ (Variable &left, Variable &right);
-Variable operator/ (Variable &b, double &a);
-Variable operator/ (double &a, Variable &b);
-
+Variable operator/ (Variable &left, const double &right);
+Variable operator/ (const double &left, const Variable &right);
+Variable operator/ (const double &left, Variable &right);
 
 Variable operator^ (const Variable &left, const Variable &right);
-Variable operator^ (const Variable &b, const double &a);
-Variable operator^ (const double &a, const Variable &b);
+Variable operator^ (const Variable &left, Variable &right);
+Variable operator^ (const Variable &left, const double &right);
+Variable operator^ (Variable &left, const Variable &right);
 Variable operator^ (Variable &left, Variable &right);
-Variable operator^ (Variable &b, double &a);
-Variable operator^ (double &a, Variable &b);
+Variable operator^ (Variable &left, const double &right);
+Variable operator^ (const double &left, const Variable &right);
+Variable operator^ (const double &left, Variable &right);
 
-
+Variable min_op (const Variable &left, Variable &right);
 Variable min_op (const Variable &left, const Variable &right);
-Variable min_op (const Variable &a, const double b);
-Variable min_op (const double b, Variable &a);
+Variable min_op (const Variable &left, const double &right);
+Variable min_op (Variable &left, const Variable &right);
 Variable min_op (Variable &left, Variable &right);
-Variable min_op (Variable &a, double b);
-Variable min_op (double b, Variable &a);
+Variable min_op (Variable &left, const double &right);
+Variable min_op (const double &left, const Variable &right);
+Variable min_op (const double &left, Variable &right);
 
+Variable max_op (const Variable &left, Variable &right);
 Variable max_op (const Variable &left, const Variable &right);
-Variable max_op (const Variable &a, const double b);
-Variable max_op (const double b, const Variable &a);
+Variable max_op (const Variable &left, const double &right);
+Variable max_op (Variable &left, const Variable &right);
 Variable max_op (Variable &left, Variable &right);
-Variable max_op (Variable &a, double b);
-Variable max_op (double b, Variable &a);
+Variable max_op (Variable &left, const double &right);
+Variable max_op (const double &left, const Variable &right);
+Variable max_op (const double &left, Variable &right);
 
 
 #endif 

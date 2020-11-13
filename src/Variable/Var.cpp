@@ -1,11 +1,11 @@
 #include "Variable.hpp"
 
-Variable::Variable (bool t) {
+Variable::Variable (double value, bool t) {
     this->child[0] = nullptr;
     this->child[1] = nullptr;
     this->arg = nullptr;
     this->operation = op::input; 
-    this->value = -1;
+    this->value = value;
     static int id_counter = 0;
     if (t) {
         id_counter++;
