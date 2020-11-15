@@ -15,28 +15,48 @@ public:
     Vector (); 
     Vector (int width);
     // eval / grad.cpp
-    Vector eval (vector<double> input);
-    Matrix grad (vector<double> input);
+    Vector eval ();
+    Matrix grad ();
     // rest of the functions are declared in operations.cpp
     void operator= (initializer_list<double> ar); 
     void operator= (initializer_list<Variable> ar);
-    Variable& operator[] (int x);
+    double& operator[] (int x);
 };
 
 // OPERATIONS
-Vector operator+ (const Vector &a, const Vector &b);
-Vector operator+ (const Vector &a, const double &b);
-Vector operator+ (const double &b, const Vector &a);
+Vector operator+ (const Vector &left, const Vector &right);
+Vector operator+ (const Vector &left, Vector &right);
+Vector operator+ (const Vector &left, const double &right);
+Vector operator+ (Vector &left, const Vector &right);
+Vector operator+ (Vector &left, Vector &right);
+Vector operator+ (Vector &left, const double &right);
+Vector operator+ (const double &left, const Vector &right);
+Vector operator+ (const double &left, Vector &right);
 
-Vector operator- (const Vector &a, const Vector &b);
-Vector operator- (const Vector &a, const double &b);
-Vector operator- (const double &b, const Vector &a);
+Vector operator- (const Vector &left, const Vector &right);
+Vector operator- (const Vector &left, Vector &right);
+Vector operator- (const Vector &left, const double &right);
+Vector operator- (Vector &left, const Vector &right);
+Vector operator- (Vector &left, Vector &right);
+Vector operator- (Vector &left, const double &right);
+Vector operator- (const double &left, const Vector &right);
+Vector operator- (const double &left, Vector &right);
 
-Vector operator* (const Vector &a, const Vector &b);
-Vector operator* (const Vector &a, const double &b);
-Vector operator* (const double &b, const Vector &a);
+Vector operator* (const Vector &left, const Vector &right);
+Vector operator* (const Vector &left, Vector &right);
+Vector operator* (const Vector &left, const double &right);
+Vector operator* (Vector &left, const Vector &right);
+Vector operator* (Vector &left, Vector &right);
+Vector operator* (Vector &left, const double &right);
+Vector operator* (const double &left, const Vector &right);
+Vector operator* (const double &left, Vector &right);
 
-Vector operator/ (const Vector &a, const Vector &b);
-Vector operator/ (const Vector &a, const double &b);
-Vector operator/ (const double &b, const Vector &a);
+Vector operator/ (const Vector &left, const Vector &right);
+Vector operator/ (const Vector &left, Vector &right);
+Vector operator/ (const Vector &left, const double &right);
+Vector operator/ (Vector &left, const Vector &right);
+Vector operator/ (Vector &left, Vector &right);
+Vector operator/ (Vector &left, const double &right);
+Vector operator/ (const double &left, const Vector &right);
+Vector operator/ (const double &left, Vector &right);
 #endif

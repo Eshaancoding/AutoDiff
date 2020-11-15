@@ -42,6 +42,7 @@ Variable operator+ (Variable &left, const Variable &right) {
 }
 
 Variable operator+ (Variable &left, Variable &right) {
+    cout<<"gsdf"<<endl;
     Variable new_var = Variable(false);
     new_var.operation = op::add;
     new_var.child[0] = &left; 

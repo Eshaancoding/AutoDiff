@@ -9,11 +9,15 @@
 using namespace std;
 
 int main () {
-    Variable x = Variable(1); 
-    Variable y = Variable(6);
-    Variable g = Variable(8);
-    Variable z = g.clip(5, y); 
-    cout<<z.eval()<<endl; 
+    Vector a = Vector(2); 
+    a = {6,32}; 
+    Vector b = Vector(2); 
+    b = {3,5};
+    Vector c = Vector(2);
+    c = {2,8};
+    Vector result = ((a + b) + (a + b)).eval();
+    cout<<result[0]<<endl;
+    cout<<result[1]<<endl;
 }
 
 // x = 3

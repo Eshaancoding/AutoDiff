@@ -1,7 +1,9 @@
 # TODO
 
-    - Test vector and matrix class in test.cpp
-    - run test.cpp, check if everything is working
+    - Make vector support for new design (adding more operations + no parameters for eval / grad)
+    - Make Matrix support for new design (adding more operations + no parameters for eval / grad)
+    - Test vector (operations + grad + eval)
+    - Test matrix (operations + grad + eval)
     - Check every comment in every file; make sure if it is correct
     - Try to make everything organized / same format of code.
         - check if every declaration in every .hpp file is defined

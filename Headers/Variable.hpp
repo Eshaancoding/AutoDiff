@@ -131,6 +131,4 @@ Variable max_op (Variable &left, Variable &right);
 Variable max_op (Variable &left, const double &right);
 Variable max_op (const double &left, const Variable &right);
 Variable max_op (const double &left, Variable &right);
-
-
 #endif 

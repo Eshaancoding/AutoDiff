@@ -85,7 +85,7 @@ Matrix operator+ (const Matrix &a, const double &b) {
             Variable *new_var = new Variable();
             new_var->operation = op::argument;
             new_var->value = b;
-            return_mat.array[i].array[x] = a.array[i].array[x] + new_var;
+            return_mat.array[i].array[x] = a.array[i].array[x] + (*new_var);
         }
     }
     // return
@@ -102,7 +102,7 @@ Matrix operator+ (const double &b, const Matrix &a) {
             Variable *new_var = new Variable();
             new_var->operation = op::argument;
             new_var->value = b;
-            return_mat.array[i].array[x] = new_var + a.array[i].array[x];
+            return_mat.array[i].array[x] = *(new_var) + a.array[i].array[x];
         }
     }
     // return
@@ -140,7 +140,7 @@ Matrix operator- (const Matrix &a, const double &b) {
             Variable *new_var = new Variable();
             new_var->operation = op::argument;
             new_var->value = b;
-            return_mat.array[i].array[x] = a.array[i].array[x] - new_var;
+            return_mat.array[i].array[x] = a.array[i].array[x] - *new_var;
         }
     }
     // return
@@ -157,7 +157,7 @@ Matrix operator- (const double &b, const Matrix &a) {
             Variable *new_var = new Variable();
             new_var->operation = op::argument;
             new_var->value = b;
-            return_mat.array[i].array[x] = new_var - a.array[i].array[x];
+            return_mat.array[i].array[x] = *new_var - a.array[i].array[x];
         }
     }
     // return
@@ -195,7 +195,7 @@ Matrix operator* (const Matrix &a, const double &b) {
             Variable *new_var = new Variable();
             new_var->operation = op::argument;
             new_var->value = b;
-            return_mat.array[i].array[x] = a.array[i].array[x] * new_var;
+            return_mat.array[i].array[x] = a.array[i].array[x] * *new_var;
         }
     }
     // return
@@ -212,7 +212,7 @@ Matrix operator* (const double &b, const Matrix &a) {
             Variable *new_var = new Variable();
             new_var->operation = op::argument;
             new_var->value = b;
-            return_mat.array[i].array[x] = new_var * a.array[i].array[x];
+            return_mat.array[i].array[x] = *new_var * a.array[i].array[x];
         }
     }
     // return
@@ -250,7 +250,7 @@ Matrix operator/ (const Matrix &a, const double &b) {
             Variable *new_var = new Variable();
             new_var->operation = op::argument;
             new_var->value = b;
-            return_mat.array[i].array[x] = a.array[i].array[x] / new_var;
+            return_mat.array[i].array[x] = a.array[i].array[x] / *(new_var);
         }
     }
     // return
@@ -267,7 +267,7 @@ Matrix operator/ (const double &b, const Matrix &a) {
             Variable *new_var = new Variable();
             new_var->operation = op::argument;
             new_var->value = b;
-            return_mat.array[i].array[x] = new_var / a.array[i].array[x];
+            return_mat.array[i].array[x] = *(new_var) / a.array[i].array[x];
         }
     }
     // return
