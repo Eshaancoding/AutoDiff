@@ -45,7 +45,7 @@ double Variable::dir_eval (double x, op operation, double y, bool respect_x) {
     throw invalid_argument("operation not valid when running dir_eval()");
 }
 
-vector<double> Variable::grad (vector<double> input, op last_operation, double ERROR_NODE, bool top_node, double other_value, bool left) {
+vector<double> Variable::grad (op last_operation, double ERROR_NODE, bool top_node, double other_value, bool left) {
     static vector<double> GRAD_OUTPUT = {};
     static vector<int> ID_ARRAY = {};
     static vector<int> input_index = {};
@@ -69,38 +69,38 @@ vector<double> Variable::grad (vector<double> input, op last_operation, double E
         if (this->arg->value >= this->child[0]->value && 
             this->arg->value <= this->child[1]->value) {
             // in range of clip
-            this->arg->grad({}, this->operation, error, false);    
+            this->arg->grad(this->operation, error, false);    
         } else {
-            this->arg->grad({}, this->operation, 0, false);
+            this->arg->grad(this->operation, 0, false);
         }
     }
     else if (this->operation == op::min) {
         // determine what child
         if (this->child[0]->value >= this->child[1]->value) {
-            this->child[0]->grad({}, this->operation, 0, false, this->child[1]->value, false);
-            this->child[1]->grad({}, this->operation, error, false, this->child[0]->value, true); 
+            this->child[0]->grad(this->operation, 0, false, this->child[1]->value, false);
+            this->child[1]->grad(this->operation, error, false, this->child[0]->value, true); 
         } else {
-            this->child[0]->grad({}, this->operation, error, false, this->child[1]->value, false); 
-            this->child[1]->grad({}, this->operation, 0, false, this->child[0]->value, true); 
+            this->child[0]->grad(this->operation, error, false, this->child[1]->value, false); 
+            this->child[1]->grad(this->operation, 0, false, this->child[0]->value, true); 
         }
     } 
     else if (this->operation == op::max) {
         if (this->child[0]->value >= this->child[1]->value) {
-            this->child[0]->grad({}, this->operation, error, false, this->child[1]->value, true); 
-            this->child[1]->grad({}, this->operation, 0, false, this->child[0]->value, false); 
+            this->child[0]->grad(this->operation, error, false, this->child[1]->value, true); 
+            this->child[1]->grad(this->operation, 0, false, this->child[0]->value, false); 
         } else {
-            this->child[0]->grad({}, this->operation, 0, false, this->child[1]->value, true); 
-            this->child[1]->grad({}, this->operation, error, false, this->child[0]->value, false); 
+            this->child[0]->grad(this->operation, 0, false, this->child[1]->value, true); 
+            this->child[1]->grad(this->operation, error, false, this->child[0]->value, false); 
         }
     }
     else if (this->child[0] != NULL) {
         if (this->child[1] != NULL) {
             // operation is a two parameter function (e.i plus, multiply, subtract, etc...) 
-            this->child[0]->grad({},this->operation, error, false, this->child[1]->value, true);
-            this->child[1]->grad({},this->operation, error, false, this->child[0]->value, false);
+            this->child[0]->grad(this->operation, error, false, this->child[1]->value, true);
+            this->child[1]->grad(this->operation, error, false, this->child[0]->value, false);
         } else {
             // operation is a one parameter function (e.i sin, cos, atan)
-            this->child[0]->grad({},this->operation, error, false);
+            this->child[0]->grad(this->operation, error, false);
         }
     } else if (this->operation == op::input) {
         // append to grad_output

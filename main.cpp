@@ -15,14 +15,11 @@ int main () {
     b = {3,5};
     Vector c = Vector(2);
     c = {2,8};
-    Vector result = ((a + b) + (a + b)).eval();
-    cout<<result[0]<<endl;
-    cout<<result[1]<<endl;
+    Matrix result = (3 * (a * a * a)).grad();
+    result.print(); 
 }
-
-// x = 3
-// y = 1
-// z = 2
-// x^y + z + x
-// df_1 / dx = 2
-// 3 ^ 1 * log(3)
+// 3x^3
+// 9x^2
+// 9(6)^2
+// 9 (36)
+// 

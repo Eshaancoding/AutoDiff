@@ -1,5 +1,6 @@
 # TODO
 
+    - Solve issue where it creates UNUSED IDS. WEIRD IDS ALLOCATIONS
     - Make vector support for new design (adding more operations + no parameters for eval / grad)
     - Make Matrix support for new design (adding more operations + no parameters for eval / grad)
     - Test vector (operations + grad + eval)

@@ -26,7 +26,6 @@ Matrix Vector::grad () {
             grad.array[i].array[x].operation = op::argument;
             grad.array[i].array[x].value = 0;
         }
-        vector<double> input_m;
         vector<int> indexs; 
         for (auto x : IDs[i]) {
             for (int f = 0; f < input_map.size(); f++) {
@@ -37,7 +36,7 @@ Matrix Vector::grad () {
             }
         }  
         // get grad
-        vector<double> grad_i = this->array[i].grad(input_m);
+        vector<double> grad_i = this->array[i].grad();
         // assign grad
         for (int x = 0; x < grad_i.size(); x++) {
             grad.array[i].array[indexs[x]] = grad_i[x];
